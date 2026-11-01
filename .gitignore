@@ -1,5 +1,6 @@
 # Ukázkový .gitignore pro tento projekt.
-# Syntaxe je vysvětlená v docs/03-gitignore.md.
+# Syntaxe: "*" je zástupný znak, "/" na konci značí složku,
+# "!" je výjimka z pravidla a "#" je komentář.
 
 # --- Tajné klíče a lokální konfigurace ---
 .env

@@ -1,30 +1,26 @@
 # STCGitHub
 
-Podklady k 30minutové prezentaci **GitHub v prohlížeči**: plán a poznámky pro řečníka, úplně základní ukázkový kód a větve připravené na živé demo.
-
-Čtyři témata: **Issues**, **.gitignore**, **Rebase** a **Merge conflict**.
+Repozitář s ukázkami pro prezentaci o GitHubu v prohlížeči: osnova s návodem krok za krokem, základní kód a větve připravené na demo **Issues**, **.gitignore**, **Rebase** a **Merge conflict**.
 
 ## Kde začít
 
-1. Přečti si [plán prezentace](docs/00-plan-prezentace.md): časy, příprava a tipy.
-2. Ke každé části je vlastní stránka s tím, co ukázat a co říct (`docs/01` až `docs/06`).
-3. Demo větve vytvoříš jedním skriptem, viz [Příprava dema](#příprava-dema).
+Otevři [OSNOVA.md](OSNOVA.md): časový plán, příprava a postup ke každé z částí prezentace.
 
 ## Struktura repozitáře
 
 ```
 STCGitHub/
-├── README.md                      tento soubor
+├── README.md
+├── OSNOVA.md                      osnova prezentace s návodem krok za krokem
 ├── .gitignore                     ukázkový .gitignore pro tento projekt
 ├── .gitattributes                 jednotné konce řádků (skripty musí mít LF)
 ├── .env.example                   vzor konfigurace; skutečný .env se necommituje
 ├── .github/
 │   ├── ISSUE_TEMPLATE/            šablony issue (chyba, nápad)
 │   └── pull_request_template.md   šablona popisu PR (včetně „Closes #“)
-├── docs/                          plán prezentace a poznámky k jednotlivým částem
 ├── src/                           základní ukázkový kód (Python)
 └── scripts/
-    └── setup-demo.sh              vytvoří demo větve pro živé ukázky
+    └── setup-demo.sh              vytvoří demo větve
 ```
 
 ## Ukázkový kód
@@ -39,7 +35,7 @@ Výstup: `Ahoj, světe!`
 
 Pozdrav je schválně v samostatném souboru `src/greeting.py` na jediném řádku. Právě ten řádek se v ukázce merge conflictu změní ve dvou větvích najednou.
 
-## Příprava dema
+## Demo větve
 
 Skript vytvoří větve s předpřipraveným stavem. Větev `main` nikdy nemění, všechny demo větve začínají na `demo/`.
 
@@ -56,4 +52,11 @@ Ve Windows ho spusť v **Git Bash**, nebo z PowerShellu:
 
 Skript lze pouštět opakovaně: demo větve vždy smaže a vytvoří znovu, takže je to zároveň „reset“ po zkoušce. Starší pull requesty z minulého kola je ale potřeba zavřít ručně.
 
-Přehled větví a co která slouží ukázat je v [plánu prezentace](docs/00-plan-prezentace.md#demo-větve).
+| Větev | Co na ní je | Na čem se ukazuje |
+|---|---|---|
+| `demo/base` | `main` + 2 commity (`CHANGELOG.md`) | Cíl pull requestů, hraje roli `main`. |
+| `demo/rebase-feature` | `main` + 2 commity (`src/farewell.py`) | **Rebase**: je o 2 commity pozadu za `demo/base`. PR do `demo/base`. |
+| `demo/conflict-a`, `demo/conflict-b` | Obě jinak mění řádek `GREETING` v `src/greeting.py`. | **Merge conflict**: PR obou do `demo/base`. Po mergi prvního má druhý konflikt. |
+| `demo/gitignore` | Chybí `.gitignore`, `.env` a `debug.log` jsou commitnuté. | **.gitignore** |
+
+**Issues** se ukazují přímo na `main`: šablony jsou ve složce `.github/ISSUE_TEMPLATE` a šablona pull requestu obsahuje řádek `Closes #`.
