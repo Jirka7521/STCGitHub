@@ -1,0 +1,29 @@
+# Ukázkový .gitignore pro tento projekt.
+# Syntaxe je vysvětlená v docs/03-gitignore.md.
+
+# --- Tajné klíče a lokální konfigurace ---
+.env
+.env.*
+!.env.example
+
+# --- Logy ---
+*.log
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# --- Node.js ---
+node_modules/
+
+# --- Výstupy buildu ---
+build/
+dist/
+
+# --- Editory a systém ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

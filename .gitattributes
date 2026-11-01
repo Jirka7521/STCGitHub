@@ -1,0 +1,5 @@
+# Git sám rozhodne, co je text, a sjednotí konce řádků.
+* text=auto
+
+# Shell skripty musí mít vždy LF, jinak je Git Bash neumí spustit.
+*.sh text eol=lf
